@@ -12,14 +12,14 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenu = () => {
-    setMenuOpen(!menuOpen);
     console.log(menuOpen);
+    setMenuOpen(!menuOpen);
   };
 
   /* Nota: optimizar height de componentes y reescribir desde enfoque movil first*/
   return (
     <nav className="w-full h-16 md:h-24 md:border-b-2  md:border-black-lightbox md:w-3/4 md:mx-auto">
-      <div className="flex items-center h-full px-4 2xl:px-16">
+      <div className="flex items-center h-full px-4">
         <div className="flex justify-center items-center px-4 gap-x-4">
           <div className="md:hidden cursor-pointer" onClick={handleMenu}>
             <Image src={Menu} alt="menu-logo" width={25} height={25}></Image>
@@ -28,7 +28,7 @@ function Navbar() {
             <Image src={Logo} height={25} alt="logo-icon" />
           </Link>
         </div>
-        <div className="flex  w-full h-full items-center justify-between ">
+        <div className="flex w-full h-full items-center justify-between">
           <div>
             <ul className="hidden md:flex space-x-4">
               <li>
@@ -92,7 +92,7 @@ function Navbar() {
       <div
         className={
           menuOpen
-            ? "fixed top-0  left-0 w-[65%] sm:hidden h-screen bg-white p-10 ease-in duration-500"
+            ? "fixed top-0  left-0 w-[65%] md:hidden h-screen bg-white p-10 ease-in duration-500"
             : "fixed left-[-100%] top-0 sm:hidde p-10 ease-in duration-500"
         }
       >
