@@ -34,7 +34,7 @@ function Navbar() {
               <li>
                 <Link
                   href="#"
-                  className="pb-8 border-b-4 border-transparent hover:border-primary-orange"
+                  className="pb-8 border-b-4 border-transparent duration-500 hover:border-primary-orange"
                 >
                   Collection
                 </Link>
@@ -42,7 +42,7 @@ function Navbar() {
               <li className="text-md">
                 <Link
                   href="#"
-                  className="pb-8 border-b-4 border-transparent hover:border-primary-orange"
+                  className="pb-8 border-b-4 border-transparent duration-500 hover:border-primary-orange"
                 >
                   Men
                 </Link>
@@ -50,7 +50,7 @@ function Navbar() {
               <li className="text-md">
                 <Link
                   href="#"
-                  className="pb-8 border-b-4 border-transparent hover:border-primary-orange"
+                  className="pb-8 border-b-4 border-transparent duration-500 hover:border-primary-orange"
                 >
                   Women
                 </Link>
@@ -58,7 +58,7 @@ function Navbar() {
               <li className="text-md">
                 <Link
                   href="#"
-                  className="pb-8 border-b-4 border-transparent hover:border-primary-orange"
+                  className="pb-8 border-b-4 border-transparent duration-500 hover:border-primary-orange"
                 >
                   About
                 </Link>
@@ -66,7 +66,7 @@ function Navbar() {
               <li className="text-md">
                 <Link
                   href="#"
-                  className="pb-8 border-b-4 border-transparent hover:border-primary-orange"
+                  className="pb-8 border-b-4 border-transparent duration-500 hover:border-primary-orange"
                 >
                   Contact
                 </Link>
@@ -83,7 +83,7 @@ function Navbar() {
                 alt="avatar-image"
                 width={50}
                 height={50}
-                className="cursor-pointer rounded-full hover:border-2 border-primary-orange"
+                className="cursor-pointer rounded-full border-2 duration-500 hover:border-primary-orange"
               ></Image>
             </li>
           </ul>

@@ -55,10 +55,10 @@ function ProductPage() {
         </div>
       </div>
       {/* About ProductPage */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
         <div>
           <p className="text-primary-orange font-bold">SNEAKER COMPANY</p>
-          <h1 className="font-bold text-3xl">Fall Limited Edition Sneakers</h1>
+          <h1 className="font-bold text-4xl">Fall Limited Edition Sneakers</h1>
           <p className="font-normal">
             These low-profile sneakers are your perfect casual wear companion.
             Featuring a durable rubber sole, they`ll withstand everything the
