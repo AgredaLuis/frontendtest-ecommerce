@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import Logo from "../../../public/logo.svg";
-import Avatar from "../../../public/images/image-avatar.png";
-import Menu from "../../../public/images/icon-menu.svg";
-import Close from "../../../public/images/icon-close.svg";
-import Cart from "../../../public/images/icon-cart.svg";
+import Logo from "../../public/logo.svg";
+import Avatar from "../../public/images/image-avatar.png";
+import Menu from "../../public/images/icon-menu.svg";
+import Close from "../../public/images/icon-close.svg";
+import Cart from "../../public/images/icon-cart.svg";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -18,14 +18,14 @@ function Navbar() {
 
   /* Nota: optimizar height de componentes y reescribir desde enfoque movil first*/
   return (
-    <nav className="w-full h-16 md:h-24 md:border-b-2  md:border-black-lightbox md:w-3/4 md:mx-auto">
+    <nav className="w-full py-2 md:h-24 md:border-b-2  md:border-black-lightbox md:w-3/4 md:mx-auto">
       <div className="flex items-center h-full px-4">
-        <div className="flex justify-center items-center px-4 gap-x-4">
+        <div className="flex justify-center items-center h-full px-4 gap-x-4">
           <div className="md:hidden cursor-pointer" onClick={handleMenu}>
-            <Image src={Menu} alt="menu-logo" width={25} height={25}></Image>
+            <Image src={Menu} alt="menu-logo" width={40} height={30}></Image>
           </div>
-          <Link href="/" className="p-2">
-            <Image src={Logo} height={25} alt="logo-icon" />
+          <Link href="/" className="md:w-3/5">
+            <Image src={Logo} height={45} alt="logo-icon" />
           </Link>
         </div>
         <div className="flex w-full h-full items-center justify-between">
@@ -83,7 +83,7 @@ function Navbar() {
                 alt="avatar-image"
                 width={50}
                 height={50}
-                className="cursor-pointer rounded-full border-2 duration-500 hover:border-primary-orange"
+                className="cursor-pointer rounded-full border-2 border-transparent duration-500 hover:border-primary-orange"
               ></Image>
             </li>
           </ul>
@@ -92,7 +92,7 @@ function Navbar() {
       <div
         className={
           menuOpen
-            ? "fixed top-0  left-0 w-[65%] md:hidden h-screen bg-white p-10 ease-in duration-500"
+            ? "fixed top-0 left-0 w-[65%] md:hidden h-screen bg-white p-10 ease-in duration-500"
             : "fixed left-[-100%] top-0 sm:hidde p-10 ease-in duration-500"
         }
       >
