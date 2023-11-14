@@ -7,6 +7,7 @@ import Close from "../../public/images/icon-close.svg";
 import Cart from "../../public/images/icon-cart.svg";
 import Link from "next/link";
 import { useState } from "react";
+import ShoppingCart from "./ShoppingCart";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -73,9 +74,9 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <ul className="flex items-center gap-x-4 sm:gap-x-8">
+          <ul className="flex items-center gap-x-4">
             <li>
-              <Image src={Cart} alt="cart-icon" className="cursor-pointer"></Image>
+              <ShoppingCart/>
             </li>
             <li>
               <Image
