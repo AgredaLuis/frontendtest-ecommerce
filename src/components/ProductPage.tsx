@@ -8,9 +8,6 @@ import product4 from "../../public/images/image-product-4.jpg";
 import Modal from "./Modal";
 import { useCounterStore } from "../store/counterStore";
 import shallow from "zustand/shallow";
-import Minus from "../../public/images/icon-minus.svg";
-import Plus from "../../public/images/icon-plus.svg";
-import ProductInfo from "@/containers/product-page/product-info";
 
 function ProductPage() {
   const [images, setImages] = useState({
@@ -24,8 +21,6 @@ function ProductPage() {
 
   const [activeImg, setActiveImg] = useState(images.img1);
 
-  const borderImg: string = "border-2 border-transparent";
-
   const [amount, setAmount] = useState(0);
 
   /* Actualizar shallow  */
@@ -33,7 +28,7 @@ function ProductPage() {
     (state) => ({
       count: state.count,
       title: state.title,
-    }),
+    }),shallow
   );
   const { increment } = useCounterStore();
 
@@ -152,7 +147,7 @@ function ProductPage() {
                 fill="white"
               />
             </svg>
-            <p>Add to Cart</p>
+            <p className="text-sm md:text-base">Add to Cart</p>
           </button>
         </div>
       </div>
