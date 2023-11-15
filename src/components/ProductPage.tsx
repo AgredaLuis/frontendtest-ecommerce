@@ -1,11 +1,25 @@
 "use client";
-import { useState, FC } from "react";
+import { useState } from "react";
 import { ImageObject } from "../types/Image";
 import Modal from "./Modal";
 import { useCounterStore } from "../store/counterStore";
 
 const ProductPage: React.FC = () => {
+  /* Modal function  */
   const [showModal, setShowModal] = useState(false);
+  const handleClick = () => {
+    // Solo abrir el modal en pantallas md o más grandes
+    if (window.innerWidth >= 768) {
+      setShowModal(true);
+    }
+    if (window.innerWidth <= 768) {
+      setShowModal(false);
+    }
+  };
+
+  /* modal */
+
+  /* Imagen view function */
 
   const [activeImg, setActiveImg] = useState<ImageObject | null>({
     id: 1,
@@ -19,6 +33,40 @@ const ProductPage: React.FC = () => {
     // ... otras imágenes
   ];
 
+  const [mainImage, setMainImage] = useState<ImageObject | null>({
+    id: 1,
+    img: "/images/image-product-1.jpg",
+  });
+
+  const [slideIndex, setSlideIndex] = useState(1);
+
+  const nextSlide = () => {
+    if (slideIndex !== images.length) {
+      setSlideIndex(slideIndex + 1);
+      setMainImage(images[slideIndex - 1]);
+      setActiveImg(images[slideIndex - 1]);
+    } else if (slideIndex === images.length) {
+      setSlideIndex(1);
+      setMainImage(images[slideIndex - 1]);
+      setActiveImg(images[slideIndex - 1]);
+    }
+  };
+
+  const prevSlide = () => {
+    if (slideIndex !== 1) {
+      setSlideIndex(slideIndex - 1);
+      setMainImage(images[slideIndex - 1]);
+      setActiveImg(images[slideIndex - 1]);
+    } else if (slideIndex === 1) {
+      setSlideIndex(images.length);
+      setMainImage(images[slideIndex - 1]);
+      setActiveImg(images[slideIndex - 1]);
+    }
+  };
+
+  /* Imagen view  */
+
+  /* Product info  function */
   const handleImageClick = (id: number, img: string) => {
     setActiveImg({ id, img });
   };
@@ -26,11 +74,6 @@ const ProductPage: React.FC = () => {
   const handleMainImage = (id: number, img: string) => {
     setMainImage({ id, img });
   };
-
-  const [mainImage, setMainImage] = useState<ImageObject | null>({
-    id: 1,
-    img: "/images/image-product-1.jpg",
-  });
 
   const [amount, setAmount] = useState(0);
 
@@ -55,16 +98,58 @@ const ProductPage: React.FC = () => {
 
   const { increment } = useCounterStore();
 
+  /* product info */
+
   return (
     <div className="flex flex-col justify-between gap-6 sm:gap-12 md:flex-row md:items-center">
+      {/* Start Product View */}
       <div className="flex flex-col gap-4 w-2.4 ">
-        <span className="md:block" onClick={() => setShowModal(true)}>
-        <img
-          src={mainImage?.img}
-          alt={`product-view-${activeImg}`}
-          className="mx-auto aspect-square object-cover md:rounded-xl cursor-pointer"
-        />
-        </span>
+        <div className="relative">
+          <img
+            src={mainImage?.img}
+            alt={`product-view-${activeImg}`}
+            className=" aspect-square object-cover md:rounded-xl md:cursor-pointer"
+            onClick={handleClick}
+          />
+          <ul className="md:hidden">
+            <li className="">
+              <button
+                className="bg-white rounded-full p-4 shadow absolute left-4 top-1/2 -translate-y-2"
+                onClick={prevSlide}
+              >
+                <svg
+                  className=""
+                  width="15"
+                  height="18"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 1 3 9l8 8"
+                    stroke="#1D2026"
+                    strokeWidth="3"
+                    fill="none"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button
+                className=" bg-white rounded-full p-4 shadow absolute right-4 top-1/2 -translate-y-2"
+                onClick={nextSlide}
+              >
+                <svg width="15" height="18" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m2 1 8 8-8 8"
+                    stroke="#1D2026"
+                    strokeWidth="3"
+                    fill="none"
+                  />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+
         <div className="flex flex-row justify-between">
           {images.map((image) => (
             <div
@@ -87,9 +172,10 @@ const ProductPage: React.FC = () => {
             </div>
           ))}
         </div>
+        {/* End Product View */}
         <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
           <div className="flex flex-col gap-4 ">
-            <img 
+            <img
               src={mainImage?.img}
               alt={`product-view-${activeImg}`}
               className="w-[375px] mx-auto aspect-square object-cover md:rounded-xl cursor-pointer"
@@ -120,7 +206,8 @@ const ProductPage: React.FC = () => {
           </div>
         </Modal>
       </div>
-      {/* About ProductPage */}
+
+      {/* Start Product-INfo*/}
       <div className="flex flex-col gap-2 px-6">
         <h5 className="text-primary-orange font-bold">SNEAKER COMPANY</h5>
         <h1 className="text-3xl font-semibold pb-3">
@@ -180,24 +267,24 @@ const ProductPage: React.FC = () => {
             </button>
           </div>
           <button
-            className="btn bg-primary-orange text-white font-bold rounded-xl py-3 px-8 flex w-full items-center justify-center gap-2 duration-500 hover:bg-primary-pale-orange"
+            className="btn bg-primary-orange text-xs text-white font-bold rounded-xl py-3 px-8 flex w-full items-center justify-center gap-2 duration-500 hover:bg-primary-pale-orange"
             onClick={handleAddToCart}
           >
             <svg
-              className="w-10"
-              width="22"
+              className="fill-current"
+              width="25"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
-                fill="white"
               />
             </svg>
-            <p className="text-sm md:text-base">Add to Cart</p>
+            <p className="font-kumbh">Add to Cart</p>
           </button>
         </div>
       </div>
+      {/* End Product Info */}
     </div>
   );
 };
