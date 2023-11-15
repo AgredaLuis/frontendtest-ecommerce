@@ -4,22 +4,23 @@ import Logo from "../../public/logo.svg";
 import Avatar from "../../public/images/image-avatar.png";
 import Menu from "../../public/images/icon-menu.svg";
 import Close from "../../public/images/icon-close.svg";
-import Cart from "../../public/images/icon-cart.svg";
 import Link from "next/link";
 import { useState } from "react";
 import ShoppingCart from "./ShoppingCart";
+import Cart from './Cart'
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const [cartOpen, setCartOpen] = useState(true)
   const handleMenu = () => {
     console.log(menuOpen);
     setMenuOpen(!menuOpen);
   };
 
+
   /* Nota: optimizar height de componentes y reescribir desde enfoque movil first*/
   return (
-    <nav className="w-full py-2 md:h-24 md:border-b-2  md:border-black-lightbox md:w-3/4 md:mx-auto">
+    <nav className="w-full py-2 md:h-24 md:border-b-2  md:w-3/4 md:mx-auto">
       <div className="flex items-center h-full px-4">
         <div className="flex justify-center items-center h-full px-4 gap-x-4">
           <div className="md:hidden cursor-pointer" onClick={handleMenu}>
@@ -29,7 +30,7 @@ function Navbar() {
             <Image src={Logo} height={45} alt="logo-icon" />
           </Link>
         </div>
-        <div className="flex w-full h-full items-center justify-between">
+        <div className="relative flex w-full h-full items-center justify-between">
           <div>
             <ul className="hidden md:flex space-x-4">
               <li>
@@ -75,7 +76,8 @@ function Navbar() {
             </ul>
           </div>
           <ul className="flex items-center gap-x-4">
-            <li>
+            { cartOpen && <Cart/>}
+            <li onClick={() => setCartOpen((prev) => !prev)}>
               <ShoppingCart/>
             </li>
             <li>
