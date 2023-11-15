@@ -16,7 +16,7 @@ const Cart: React.FC = () => {
     return count === 0;
   };
   return (
-    <article className="absolute bg-white rounded-xl shadow-2xl w-[330px] mx-auto mt-1 p-5 right-0 top-16">
+    <article className="absolute z-10 bg-white rounded-xl shadow-2xl w-[330px] mx-auto mt-1 p-5 right-0 top-16">
       <h3 className="m-1 pb-2 border-b-2 font-bold">Cart</h3>
 
       {handleCart() ? (

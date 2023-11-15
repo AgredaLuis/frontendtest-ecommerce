@@ -93,11 +93,11 @@ function Navbar() {
         </div>
       </div>
       <div
-        className={
-          menuOpen
-            ? "fixed top-0 left-0 w-[65%] md:hidden h-screen bg-white p-10 ease-in duration-500"
-            : "fixed left-[-100%] top-0 sm:hidde p-10 ease-in duration-500"
-        }
+        className={ `
+          ${menuOpen
+            ? " fixed z-10 top-0 left-0 w-[65%] md:hidden h-screen bg-white p-10 ease-in duration-500"
+            : " fixed  left-[-100%] top-0 sm:hidde p-10 ease-in duration-500"}
+        `}
       >
         <div className="fixed w-full justify-start">
           <div onClick={handleMenu} className="cursor-pointer">
