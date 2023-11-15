@@ -9,19 +9,53 @@ import Modal from "./Modal";
 import { useCounterStore } from "../store/counterStore";
 import shallow from "zustand/shallow";
 
-function ProductPage() {
-  const [images, setImages] = useState({
+interface ImageObject {
+  id: number;
+  img: string;
+}
+
+const ProductPage:React.FC = () => {
+ /*  const [images, setImages] = useState({
     img1: product1,
     img2: product2,
     img3: product3,
     img4: product4,
-  });
+  }); */
+
+  
 
   const [showModal, setShowModal] = useState(false);
 
-  const [activeImg, setActiveImg] = useState(images.img1);
+/*   const [activeImg, setActiveImg] = useState(images.img1); */
+  const [activeImg, setActiveImg] = useState<ImageObject | null>({
+    id: 1,
+    img: "/images/image-product-1.jpg",
+  });
+  const images: ImageObject[] = [
+    { id: 1, img: "/images/image-product-1.jpg" },
+    { id: 2, img: "/images/image-product-2.jpg" },
+    { id: 3, img: "/images/image-product-3.jpg" },
+    { id: 4, img: "/images/image-product-4.jpg" },
+    // ... otras imágenes
+  ];
+
+  const handleImageClick = (id: number, img: string) => {
+    setActiveImg({ id, img });
+  };
+
+  const handleMainImage = (id: number, img: string) => {
+    setMainImage({ id, img });
+  };
+
+  const [mainImage, setMainImage] = useState<ImageObject | null>({
+    id: 1,
+    img: "/images/image-product-1.jpg",
+  });
+
 
   const [amount, setAmount] = useState(0);
+
+
 
   /* Actualizar shallow  */
   const productCart = useCounterStore(
@@ -33,54 +67,37 @@ function ProductPage() {
   const { increment } = useCounterStore();
 
   return (
-    <div className="flex flex-col justify-between gap-6 md:gap-12 md:flex-row md:items-center">
-      <div className="flex flex-col gap-4">
-        <Image
-          src={activeImg}
+    <div className="flex flex-col justify-between gap-6 sm:gap-12 md:flex-row md:items-center">
+      <div className="flex flex-col gap-4 w-2.4 ">
+        <img
+          src={mainImage?.img}
           alt={`product-view-${activeImg}`}
-          className="w-full h-full aspect-square object-cover md:rounded-xl cursor-pointer"
+          className="mx-auto aspect-square object-cover md:rounded-xl cursor-pointer"
           onClick={() => setShowModal(true)}
         />
         <div className="flex flex-row justify-between">
-          <Image
-            src={images.img1}
-            alt="product-view-1"
-            className="w-20 h-20 rounded-lg cursor-pointer"
-            onClick={() => setActiveImg(images.img1)}
-          />
-          <Image
-            src={images.img2}
-            alt="product-view-2"
-            className="w-20 h-20 rounded-lg cursor-pointer"
-            onClick={() => setActiveImg(images.img2)}
-          />
-          <Image
-            src={images.img3}
-            alt="product-view-3"
-            className="w-20 h-20 rounded-lg cursor-pointer"
-            onClick={() => setActiveImg(images.img3)}
-          />
-          <Image
-            src={images.img4}
-            alt="product-view-4"
-            className="w-20 h-20 rounded-lg cursor-pointer"
-            onClick={() => setActiveImg(images.img4)}
-          />
+        {images.map((image) => (
+        <div
+          key={image.id}
+          className={` w-20 h-18 rounded-xl cursor-pointer duration-500 hover:opacity-60  ${
+            activeImg?.id === image.id ? " border-4 border-primary-orange opacity-50" : "border-4 border-transparent overflow-hidden"
+          }`}
+          onClick={() => {
+            handleImageClick(image.id, image.img)
+            handleMainImage(image.id, image.img)
+          }}
+        >
+          <img className="rounded-md" src={image.img} alt={`Image ${image.id}`} />
         </div>
-
+      ))}
+        </div>
         <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
           <h1>Modal de fotos</h1>
-          <Image
-            src={activeImg}
-            alt={`product-view-${activeImg}`}
-            className="w-[375px] h-[375px]aspect-square object-cover md:rounded-xl cursor-pointer"
-            onClick={() => setShowModal(true)}
-          />
         </Modal>
       </div>
       {/* About ProductPage */}
       <div className="flex flex-col gap-2 px-6">
-        <h5 className="text-primary-orange font-semibold">SNEAKER COMPANY</h5>
+        <h5 className="text-primary-orange font-bold">SNEAKER COMPANY</h5>
         <h1 className="text-3xl font-semibold pb-3">
           Fall Limited Edition Sneakers
         </h1>
@@ -138,10 +155,10 @@ function ProductPage() {
             </button>
           </div>
           <button
-            className="btn bg-primary-orange text-white font-bold rounded-xl py-3 px-8 w-full flex items-center justify-center gap-2 duration-500 hover:bg-primary-pale-orange"
+            className="btn bg-primary-orange text-white font-bold rounded-xl py-3 px-8 flex w-full items-center justify-center gap-2 duration-500 hover:bg-primary-pale-orange"
             onClick={() => increment(amount)}
           >
-            <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-10" width="22" height="20" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
                 fill="white"
