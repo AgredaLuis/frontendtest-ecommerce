@@ -1,11 +1,5 @@
 import React, { FC, MouseEvent} from "react";
-
-interface ModalProps {
-  isVisible: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-}
-
+import {ModalProps} from '../types/modal'
 const Modal: FC<ModalProps> = ({ isVisible, onClose, children }) => {
 
   const handleClose = (e: MouseEvent<HTMLDivElement>) => {
@@ -20,7 +14,7 @@ const Modal: FC<ModalProps> = ({ isVisible, onClose, children }) => {
       id="wrapper"
       onClick={handleClose}
     >
-      <div className="w-[600px] flex flex-col">
+      <div className="w-[600px] h-[600px] flex flex-col">
         <button
           className="text-neutral-dark-grayish-blue text-xl place-self-end duration-300 hover:text-primary-orange"
           onClick={() => onClose()}

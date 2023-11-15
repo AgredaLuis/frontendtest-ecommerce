@@ -11,7 +11,7 @@ import Cart from './Cart'
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(true)
+  const [cartOpen, setCartOpen] = useState(false)
   const handleMenu = () => {
     console.log(menuOpen);
     setMenuOpen(!menuOpen);
