@@ -178,7 +178,7 @@ const ProductPage: React.FC = () => {
       </div>
       {/* Start Modal  */}
       <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
-          <div className="relative flex flex-col gap-4 ">
+          <div className="flex flex-col w-[375px] gap-4 ">
             <div>
               <img
                 src={mainImage?.img}
