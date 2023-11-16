@@ -7,16 +7,15 @@ import Close from "../../public/images/icon-close.svg";
 import Link from "next/link";
 import { useState } from "react";
 import ShoppingCart from "./ShoppingCart";
-import Cart from './Cart'
+import Cart from "./Cart";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false);
   const handleMenu = () => {
-    console.log(menuOpen);
     setMenuOpen(!menuOpen);
+    document.body.style.overflow = menuOpen ? 'auto' : 'hidden';
   };
-
 
   /* Nota: optimizar height de componentes y reescribir desde enfoque movil first*/
   return (
@@ -76,9 +75,9 @@ function Navbar() {
             </ul>
           </div>
           <ul className="flex items-center gap-x-4">
-            { cartOpen && <Cart/>}
+            {cartOpen && <Cart />}
             <li onClick={() => setCartOpen((prev) => !prev)}>
-              <ShoppingCart/>
+              <ShoppingCart />
             </li>
             <li>
               <Image
@@ -92,48 +91,54 @@ function Navbar() {
           </ul>
         </div>
       </div>
-      <div
-        className={ `
-          ${menuOpen
-            ? " fixed z-10 top-0 left-0 w-[65%] md:hidden h-screen bg-white p-10 ease-in duration-500"
-            : " fixed  left-[-100%] top-0 sm:hidde p-10 ease-in duration-500"}
-        `}
-      >
-        <div className="fixed w-full justify-start">
-          <div onClick={handleMenu} className="cursor-pointer">
-            <Image src={Close} alt="close-icon" />
-          </div>
-          <div className="flex-col py-4">
-            <ul>
-              <Link href="#">
-                <li className="font-kumbh font-bold py-4 cursor-pointer">
-                  Collection
-                </li>
-              </Link>
-              <Link href="#">
-                <li className="font-kumbh font-bold py-4 cursor-pointer">
-                  Men
-                </li>
-              </Link>
-              <Link href="#">
-                <li className="font-kumbh font-bold py-4 cursor-pointer">
-                  Women
-                </li>
-              </Link>
-              <Link href="#">
-                <li className="font-kumbh font-bold py-4 cursor-pointer">
-                  About
-                </li>
-              </Link>
-              <Link href="#">
-                <li className=" font-kumbh font-bold py-4 cursor-pointer">
-                  Contact
-                </li>
-              </Link>
-            </ul>
+      {menuOpen ? (
+        <div className="bg-black/70 z-10 absolute w-full h-screen flex top-0 scroll-d">
+          <div
+            className={`
+      ${
+        menuOpen
+          ? " fixed z-10 top-0 left-0 w-[65%] md:hidden h-screen bg-white p-10 ease-in duration-500"
+          : " fixed  left-[-100%] top-0 sm:hidde p-10 ease-in duration-500"
+      }
+    `}
+          >
+            <div className="fixed w-full justify-start">
+              <div>
+                <Image src={Close} alt="close-icon" className="cursor-pointer" onClick={handleMenu} />
+              </div>
+              <div className="flex-col py-4">
+                <ul>
+                  <Link href="#">
+                    <li className="font-kumbh font-bold py-4 cursor-pointer">
+                      Collection
+                    </li>
+                  </Link>
+                  <Link href="#">
+                    <li className="font-kumbh font-bold py-4 cursor-pointer">
+                      Men
+                    </li>
+                  </Link>
+                  <Link href="#">
+                    <li className="font-kumbh font-bold py-4 cursor-pointer">
+                      Women
+                    </li>
+                  </Link>
+                  <Link href="#">
+                    <li className="font-kumbh font-bold py-4 cursor-pointer">
+                      About
+                    </li>
+                  </Link>
+                  <Link href="#">
+                    <li className=" font-kumbh font-bold py-4 cursor-pointer">
+                      Contact
+                    </li>
+                  </Link>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </nav>
   );
 }
