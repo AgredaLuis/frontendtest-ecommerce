@@ -14,7 +14,7 @@ function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
-    document.body.style.overflow = menuOpen ? 'auto' : 'hidden';
+    document.body.style.overflow = menuOpen ? "auto" : "hidden";
   };
 
   /* Nota: optimizar height de componentes y reescribir desde enfoque movil first*/
@@ -92,19 +92,24 @@ function Navbar() {
         </div>
       </div>
       {menuOpen ? (
-        <div className="bg-black/70 z-10 absolute w-full h-screen flex top-0 scroll-d">
+        <div className={`fixed bg-black/70 z-10  w-full h-screen top-0`}>
           <div
             className={`
       ${
         menuOpen
-          ? " fixed z-10 top-0 left-0 w-[65%] md:hidden h-screen bg-white p-10 ease-in duration-500"
-          : " fixed  left-[-100%] top-0 sm:hidde p-10 ease-in duration-500"
+          ? " fixed z-10 top-0 left-0 w-[65%] h-screen bg-white p-10 ease-in-out duration-500 transition-all md:hidden"
+          : " fixed left-[-100%] top-0 sm:hidden p-10 ease-in-out duration-500 transition-all"
       }
     `}
           >
-            <div className="fixed w-full justify-start">
+            <div className="fixed justify-start">
               <div>
-                <Image src={Close} alt="close-icon" className="cursor-pointer" onClick={handleMenu} />
+                <Image
+                  src={Close}
+                  alt="close-icon"
+                  className="cursor-pointer"
+                  onClick={handleMenu}
+                />
               </div>
               <div className="flex-col py-4">
                 <ul>
