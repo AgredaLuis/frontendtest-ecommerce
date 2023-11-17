@@ -91,8 +91,7 @@ function Navbar() {
           </ul>
         </div>
       </div>
-      {menuOpen ? (
-        <div className={`fixed bg-black/70 z-10  w-full h-screen top-0`}>
+        <div className={menuOpen ? `fixed bg-black/70 z-10  w-full h-screen top-0` : ""}>
           <div
             className={`
       ${
@@ -143,7 +142,6 @@ function Navbar() {
             </div>
           </div>
         </div>
-      ) : null}
     </nav>
   );
 }
