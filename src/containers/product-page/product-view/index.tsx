@@ -180,7 +180,7 @@ const ProductViewSection = () => {
       </div>
     </Modal>
 
-    {/* Start Modal  */}
+    {/* end Modal  */}
   </div>
   )
 }
