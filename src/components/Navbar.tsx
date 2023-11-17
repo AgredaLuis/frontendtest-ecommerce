@@ -17,6 +17,9 @@ function Navbar() {
     document.body.style.overflow = menuOpen ? "auto" : "hidden";
   };
 
+  const closeCart = () => {
+    setCartOpen(false);
+  };
   /* Nota: optimizar height de componentes y reescribir desde enfoque movil first*/
   return (
     <nav className="w-full py-2 md:h-24 md:border-b-2  md:w-3/4 md:mx-auto">
@@ -75,7 +78,7 @@ function Navbar() {
             </ul>
           </div>
           <ul className="flex items-center gap-x-4">
-            {cartOpen && <Cart />}
+            {cartOpen && <Cart onClose={closeCart} />}
             <li onClick={() => setCartOpen((prev) => !prev)}>
               <ShoppingCart />
             </li>

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import cart from "../../public/images/icon-cart.svg";
 import { useGetFromStore } from "../hooks/zustandHooks";
